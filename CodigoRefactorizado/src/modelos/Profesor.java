@@ -28,6 +28,12 @@ public class Profesor
         this.paralelos= new ArrayList<>();
     }
     
+    public double calcularSueldo()
+    {
+        double sueldo = this.getAñosdeTrabajo()*600 + this.getBonoFijo();
+        return sueldo;
+    }
+    
     // Getters and Setters----------------------------------------------------
     public void anadirParalelos(Paralelo p)
     {
