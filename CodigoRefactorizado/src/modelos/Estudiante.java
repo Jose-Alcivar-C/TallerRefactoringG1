@@ -78,30 +78,28 @@ public class Estudiante{
         this.telefono = telefono;
     }
     
-    //Calcula y devuelve la nota inicial contando examen, deberes, lecciones y talleres. El teorico y el practico se calcula por parcial.
-    public double CalcularNotaInicial(Paralelo p, double nexamen,double ndeberes, double nlecciones, double ntalleres){
-        double notaInicial=0;
+    public double NotaGeneral(Paralelo p, double nexamen,double ndeberes, double nlecciones, double ntalleres){
+        double notaG=0;
         for(Paralelo par:paralelos){
             if(p.equals(par)){
                 double notaTeorico=(nexamen+ndeberes+nlecciones)*0.80;
                 double notaPractico=(ntalleres)*0.20;
-                notaInicial=notaTeorico+notaPractico;
+                notaG=notaTeorico+notaPractico;
             }
         }
+        return notaG;
+    }
+    
+    //Calcula y devuelve la nota inicial contando examen, deberes, lecciones y talleres. El teorico y el practico se calcula por parcial.
+    public double CalcularNotaInicial(Paralelo p, double nexamen,double ndeberes, double nlecciones, double ntalleres){
+        double notaInicial= NotaGeneral(p, nexamen, ndeberes, nlecciones, ntalleres);
         return notaInicial;
     }
     
     //Calcula y devuelve la nota final contando examen, deberes, lecciones y talleres. El teorico y el practico se calcula por parcial.
     
     public double CalcularNotaFinal(Paralelo p, double nexamen,double ndeberes, double nlecciones, double ntalleres){
-        double notaFinal=0;
-        for(Paralelo par:paralelos){
-            if(p.equals(par)){
-                double notaTeorico=(nexamen+ndeberes+nlecciones)*0.80;
-                double notaPractico=(ntalleres)*0.20;
-                notaFinal=notaTeorico+notaPractico;
-            }
-        }
+        double notaFinal= NotaGeneral(p, nexamen, ndeberes, nlecciones, ntalleres);
         return notaFinal;
     }
     
